@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp"> 
+<head>
+  <meta charset="utf-8">
+  <title>Roman Numeral Translator</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="core/romanTranslator.module.js"></script>
+  <script src="core/romanTranslator.service.js"></script>
+  <script src="integer-to-roman/integer-to-roman.js"></script>
+  <script src="integer-to-roman/integer-to-roman.controller.js"></script>
+  <script src="roman-to-integer/roman-to-integer.js"></script>
+  <script src="roman-to-integer/roman-to-integer.controller.js"></script>
+</head>
+
+<body>
+
+<ul>
+   <li><a href="#!/toroman">Integer to Roman Numeral</a></li>
+   <li><a href="#!/todecimal">Roman Numeral to Integer</a></li>
+</ul>
+
+  <div ng-view style="margin-left:20px; padding-top: 50px"></div>
+
+</body>
+
+</html>

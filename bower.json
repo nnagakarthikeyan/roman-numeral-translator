@@ -1,0 +1,16 @@
+{
+  "name": "roman-numeral-translator",
+  "description": "Angular Js Project for Roman numeral translator",
+  "authors": [
+    "nnagakarthikeyan"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/nnagakarthikeyan/roman-numeral-translator",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "angular-loader": "~1.5.0",
+    "angular-mocks": "~1.5.0"
+  }
+}
