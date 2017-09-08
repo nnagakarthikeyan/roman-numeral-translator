@@ -1,6 +1,6 @@
 'use strict';
 
-  angular.module('romantoIntegerApp', ['ngRoute'])
+  angular.module('romantoIntegerApp', ['ngRoute','romanTranslatorApp'])
 
       .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/todecimal', {

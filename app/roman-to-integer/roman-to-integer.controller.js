@@ -5,9 +5,11 @@
     var ic = this;
 
     function translateToInteger() {
-  
+      try {
         ic.integer = romanNumeralTranslatorService.translateToInteger(ic.romanNumeral);
-      
+      } catch (e) {
+        console.log(e);
+      }
     }
 
     ic.integer = '';

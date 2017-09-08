@@ -1,6 +1,6 @@
 'use strict';
 
-  angular.module('intergertoRomanApp', ['ngRoute'])
+  angular.module('intergertoRomanApp', ['ngRoute','romanTranslatorApp'])
 
       .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/toroman', {

@@ -6,11 +6,13 @@
     function translateToRoman(value) {
   
        // 3,888,888 is the longest number represented by Roman numerals
-       if (value <= 0 || value > 3888888) return value;
+       if (isNaN(value) || value <= 0 || value > 3888888 ) {
+         throw new Error('invalid value');
+      }
        var romanNumeral = "";
        var romanZero = this.getRoman(value);
        // If the number is 4000 or greater
-       if (romanZero.numThousands > 4) {
+       if (romanZero.numThousands > 3) {
          var thousandString = "";
          for (var j=0;j<romanZero.numThousands;j++) thousandString += "M";
          var thousandsZero = getRoman(romanZero.numThousands);
@@ -22,7 +24,11 @@
      }
 
     function translateToInteger(str) {  
-
+      var patt = new RegExp("^(?=[MDCLXVI])M*(C[MD]|D?C*)(X[CL]|L?X*)(I[XV]|V?I*)$");
+      var testres = patt.test(str);
+      if(!testres) {
+        throw new Error('invalid value');
+      }
       var result = 0;
       var decimal = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
       var roman = ["M", "CM","D","CD","C", "XC", "L", "XL", "X","IX","V","IV","I"];

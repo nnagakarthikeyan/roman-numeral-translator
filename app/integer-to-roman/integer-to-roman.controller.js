@@ -5,9 +5,12 @@
     var rc = this;
 
     function translateToRoman() {
-  
+      try {
         rc.romanNumeral = romanNumeralTranslatorService.translateToRoman(rc.integer);
-      
+       } catch (e) {
+        console.log(e);
+      }
+
     }
 
     rc.integer = '';
