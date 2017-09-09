@@ -38,16 +38,16 @@ describe('IntegertoRomanController', function() {
         expect(ctrl.romanNumeral).toBe('III');
   });
 
-  it('should not perform the translation if the given value is not a number', function() {
+  it('should return error message if the given value is not a number', function() {
         ctrl.integer = 'abcd';
         ctrl.translateToRoman();
-        expect(ctrl.romanNumeral).toBe('');
+        expect(ctrl.romanNumeral).toBe('Please enter a number between 1 and 3,888,888');
   });
 
-   it('should not perform the translation if the given value is greater than 3888888', function() {
+   it('should return error message if the given value is greater than 3888888', function() {
         ctrl.integer = 4000000;
         ctrl.translateToRoman();
-        expect(ctrl.romanNumeral).toBe('');
+        expect(ctrl.romanNumeral).toBe('Please enter a number between 1 and 3,888,888');
   });
 
 

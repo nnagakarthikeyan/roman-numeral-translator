@@ -24,7 +24,8 @@
      }
 
     function translateToInteger(str) {  
-      var patt = new RegExp("^(?=[MDCLXVI])M*(C[MD]|D?C*)(X[CL]|L?X*)(I[XV]|V?I*)$");
+      // Regular Expression to match the valid Roman numeral
+      var patt = new RegExp("^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$");
       var testres = patt.test(str);
       if(!testres) {
         throw new Error('invalid value');

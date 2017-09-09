@@ -44,5 +44,11 @@ describe('RomanTranslatorService', function() {
     }).toThrowError('invalid value');
   });
 
+     it('should throw error if the given value is a invalid roman numeral when translating to integer', function() {
+    expect(function() {
+      translatorService.translateToInteger('XXXX')
+    }).toThrowError('invalid value');
+  });
+
 
 });

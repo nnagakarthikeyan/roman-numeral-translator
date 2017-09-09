@@ -36,10 +36,16 @@ describe('RomantoIntegerController', function() {
       expect(ctrl.integer).toBe(900);
   });
 
-  it('should not perform the translation if the given value is not a Roman numeral', function() {
+  it('should return error message if the given value is not a Roman numeral', function() {
         ctrl.romanNumeral = 'abcd';
         ctrl.translateToInteger();
-        expect(ctrl.integer).toBe('');
+        expect(ctrl.integer).toBe('Please enter a valid roman numeral');
+  });
+
+  it('should return error message if the given value is a invalid Roman numeral', function() {
+        ctrl.romanNumeral = 'XXXX';
+        ctrl.translateToInteger();
+        expect(ctrl.integer).toBe('Please enter a valid roman numeral');
   });
 
 

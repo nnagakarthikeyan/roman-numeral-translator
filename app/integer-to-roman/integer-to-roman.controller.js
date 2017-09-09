@@ -9,6 +9,7 @@
         rc.romanNumeral = romanNumeralTranslatorService.translateToRoman(rc.integer);
        } catch (e) {
         console.log(e);
+        rc.romanNumeral = 'Please enter a number between 1 and 3,888,888';
       }
 
     }

@@ -22,7 +22,7 @@ describe('Roman Numeral Translator App', function() {
         toMatch(/Enter a Integer value/);
     });
 
-    it('should display the Roman numeral value as a user types into the text box ', function() {
+    it('should display the Roman numeral value as a user types valid value into the text box ', function() {
 
       var query = element(by.model('rc.integer'));
       query.sendKeys(100);
@@ -35,6 +35,14 @@ describe('Roman Numeral Translator App', function() {
       query.clear();
       query.sendKeys(4010);
       expect(element.all(by.css('[ng-view] span')).first().getText()).toBe('Roman numeral:(IV)X');
+
+    });
+
+    it('should display proper error message if a user types invalid value into the text box ', function() {
+
+      var query = element(by.model('rc.integer'));
+      query.sendKeys('abcd');
+      expect(element.all(by.css('[ng-view] span')).first().getText()).toMatch(/Please enter a number between/);
 
     });
 
@@ -53,7 +61,7 @@ describe('Roman Numeral Translator App', function() {
         toMatch(/Enter a Roman numeral/);
     });
 
-    it('should display the Integer value as a user types into the text box ', function() {
+    it('should display the Integer value as a user types roman numeral into the text box ', function() {
 
       var query = element(by.model('ic.romanNumeral'));
       query.sendKeys('MM');
@@ -62,6 +70,22 @@ describe('Roman Numeral Translator App', function() {
       query.clear();
       query.sendKeys('XVI');
       expect(element.all(by.css('[ng-view] span')).first().getText()).toBe('Integer value:16');
+
+    });
+
+    it('should display proper error message if a user types invalid value into the text box ', function() {
+
+      var query = element(by.model('ic.romanNumeral'));
+      query.sendKeys('abcd');
+      expect(element.all(by.css('[ng-view] span')).first().getText()).toMatch(/Please enter a valid roman numeral/);
+
+    });
+
+    it('should display proper error message if a user types invalid roman numeral into the text box ', function() {
+
+      var query = element(by.model('ic.romanNumeral'));
+      query.sendKeys('XXXX');
+      expect(element.all(by.css('[ng-view] span')).first().getText()).toMatch(/Please enter a valid roman numeral/);
 
     });
 
