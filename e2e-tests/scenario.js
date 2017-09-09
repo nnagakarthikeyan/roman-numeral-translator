@@ -26,15 +26,15 @@ describe('Roman Numeral Translator App', function() {
 
       var query = element(by.model('rc.integer'));
       query.sendKeys(100);
-      expect(element.all(by.css('[ng-view] span')).first().getText()).toBe('Roman numeral:C');
+      expect(element(by.binding('rc.romanNumeral')).getText()).toBe('C');
 
       query.clear();
       query.sendKeys(3000);
-      expect(element.all(by.css('[ng-view] span')).first().getText()).toBe('Roman numeral:MMM');
+      expect(element(by.binding('rc.romanNumeral')).getText()).toBe('MMM');
 
       query.clear();
       query.sendKeys(4010);
-      expect(element.all(by.css('[ng-view] span')).first().getText()).toBe('Roman numeral:(IV)X');
+      expect(element(by.binding('rc.romanNumeral')).getText()).toBe('(IV)X');
 
     });
 
@@ -42,7 +42,7 @@ describe('Roman Numeral Translator App', function() {
 
       var query = element(by.model('rc.integer'));
       query.sendKeys('abcd');
-      expect(element.all(by.css('[ng-view] span')).first().getText()).toMatch(/Please enter a number between/);
+      expect(element(by.binding('rc.romanNumeral')).getText()).toMatch(/Please enter a number between/);
 
     });
 
@@ -65,11 +65,11 @@ describe('Roman Numeral Translator App', function() {
 
       var query = element(by.model('ic.romanNumeral'));
       query.sendKeys('MM');
-      expect(element.all(by.css('[ng-view] span')).first().getText()).toBe('Integer value:2000');
+      expect(element(by.binding('ic.integer')).getText()).toBe('2000');
 
       query.clear();
       query.sendKeys('XVI');
-      expect(element.all(by.css('[ng-view] span')).first().getText()).toBe('Integer value:16');
+      expect(element(by.binding('ic.integer')).getText()).toBe('16');
 
     });
 
@@ -77,7 +77,7 @@ describe('Roman Numeral Translator App', function() {
 
       var query = element(by.model('ic.romanNumeral'));
       query.sendKeys('abcd');
-      expect(element.all(by.css('[ng-view] span')).first().getText()).toMatch(/Please enter a valid roman numeral/);
+      expect(element(by.binding('ic.integer')).getText()).toMatch(/Please enter a valid roman numeral/);
 
     });
 
@@ -85,7 +85,7 @@ describe('Roman Numeral Translator App', function() {
 
       var query = element(by.model('ic.romanNumeral'));
       query.sendKeys('XXXX');
-      expect(element.all(by.css('[ng-view] span')).first().getText()).toMatch(/Please enter a valid roman numeral/);
+      expect(element(by.binding('ic.integer')).getText()).toMatch(/Please enter a valid roman numeral/);
 
     });
 

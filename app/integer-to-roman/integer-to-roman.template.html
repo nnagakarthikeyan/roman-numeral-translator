@@ -1,5 +1,8 @@
-<p>Enter a Integer value</p>
-<input type="text" ng-model="rc.integer" ng-change="rc.translateToRoman()"/><br/><br/>
 
-<span>Roman numeral:{{rc.romanNumeral}}</span><br/>
+<div class = "converter">
+<p class = "label">Enter a Integer value</p>
+<input type="text" ng-model="rc.integer" ng-change="rc.translateToRoman()"/><br/>
+
+<p class = "label">Roman numeral</p> <div class = "converter-results">{{rc.romanNumeral}}</div><br/>
+<div>
 
