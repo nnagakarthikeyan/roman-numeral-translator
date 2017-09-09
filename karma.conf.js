@@ -43,14 +43,6 @@ module.exports = function(config) {
       'karma-junit-reporter',
       'karma-spec-reporter'
     ],
-
-    junitReporter: {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    }
-
-
-
-    
+   
   })
 }
