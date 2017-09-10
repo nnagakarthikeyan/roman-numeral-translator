@@ -23,7 +23,38 @@
        return romanNumeral;
      }
 
-    function translateToInteger(str) {  
+    function translateToInteger(str) {
+      var splitStr = new Array();
+      var cloneStr = "";
+      var result;
+      var resFirstPart,resSecondPart;
+      try {
+         if(str.startsWith("(")) {
+         cloneStr = str.substr(1);
+         splitStr = cloneStr.split(")");
+           if(splitStr.length === 2) {
+              resFirstPart = this.getInteger(splitStr[0]);
+              result = (resFirstPart * 1000);
+              if(!(splitStr[1] === "")) {
+              resSecondPart = this.getInteger(splitStr[1]);
+              result = (resFirstPart * 1000) + resSecondPart;
+            }
+           }
+           else if(splitStr.length > 2)
+            throw new Error('invalid value');
+        }
+        else {
+           result = this.getInteger(str);
+        }
+        
+      } catch (e) {
+        console.log(e);
+        throw new Error('invalid value');
+      }
+      return result;
+    }
+
+    function getInteger(str) {  
       // Regular Expression to match the valid Roman numeral
       var patt = new RegExp("^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$");
       var testres = patt.test(str);
@@ -65,6 +96,7 @@
     this.translateToRoman = translateToRoman;
     this.translateToInteger = translateToInteger;
     this.getRoman = getRoman;
+    this.getInteger = getInteger;
   }
 
   angular.module('romanTranslatorApp')

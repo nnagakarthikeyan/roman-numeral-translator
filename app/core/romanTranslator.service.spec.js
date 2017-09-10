@@ -38,6 +38,10 @@ describe('RomanTranslatorService', function() {
     expect(translatorService.translateToInteger('C')).toBe(100);
   });
 
+   it('should translate a given roman string included in round brackets for value greater than 3999', function() {
+    expect(translatorService.translateToInteger('(X)')).toBe(10000);
+  });
+
    it('should throw error if the given value is not a roman numeral when translating to integer', function() {
     expect(function() {
       translatorService.translateToInteger('abcd')

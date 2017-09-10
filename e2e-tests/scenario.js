@@ -71,6 +71,10 @@ describe('Roman Numeral Translator App', function() {
       query.sendKeys('XVI');
       expect(element(by.binding('ic.integer')).getText()).toBe('16');
 
+      query.clear();
+      query.sendKeys('(XVI)');
+      expect(element(by.binding('ic.integer')).getText()).toBe('16000');
+
     });
 
     it('should display proper error message if a user types invalid value into the text box ', function() {
