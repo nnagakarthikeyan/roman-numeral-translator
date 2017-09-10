@@ -20,14 +20,23 @@ describe('RomantoIntegerController', function() {
 
   it('tracks that the service was called', function() {
      spyOn(translatorService,'translateToInteger');
+     ctrl.romanNumeral = 'CM';
      ctrl.translateToInteger();
      expect(translatorService.translateToInteger).toHaveBeenCalled();
   });
 
   it('tracks that the service was called x times', function() {
      spyOn(translatorService,'translateToInteger');
+     ctrl.romanNumeral = 'CM';
      ctrl.translateToInteger();
      expect(translatorService.translateToInteger).toHaveBeenCalledTimes(1);
+  });
+
+   it('tracks that the service was called with argument', function() {
+     spyOn(translatorService,'translateToInteger');
+     ctrl.romanNumeral = 'CM';
+     ctrl.translateToInteger();
+     expect(translatorService.translateToInteger).toHaveBeenCalledWith('CM');
   });
 
   it('should perform the integer translation by calling the service', function() {

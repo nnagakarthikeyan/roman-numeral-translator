@@ -22,14 +22,23 @@ describe('IntegertoRomanController', function() {
 
   it('tracks that the service was called', function() {
      spyOn(translatorService,'translateToRoman');
+     ctrl.integer = 100;
      ctrl.translateToRoman();
      expect(translatorService.translateToRoman).toHaveBeenCalled();
   });
 
   it('tracks that the service was called x times', function() {
      spyOn(translatorService,'translateToRoman');
+     ctrl.integer = 100;
      ctrl.translateToRoman();
      expect(translatorService.translateToRoman).toHaveBeenCalledTimes(1);
+  });
+
+  it('tracks that the service was called with argument', function() {
+     spyOn(translatorService,'translateToRoman');
+     ctrl.integer = 100;
+     ctrl.translateToRoman();
+     expect(translatorService.translateToRoman).toHaveBeenCalledWith(100);
   });
 
   it('should perform the roman numeral translation by calling the service', function() {
