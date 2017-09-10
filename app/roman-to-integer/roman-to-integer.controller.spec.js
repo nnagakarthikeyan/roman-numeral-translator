@@ -48,5 +48,10 @@ describe('RomantoIntegerController', function() {
         expect(ctrl.integer).toBe('Please enter a valid roman numeral');
   });
 
+  it('should return error message if the given roman string represents a value greater than 3888888 ', function() {
+        ctrl.romanNumeral = '(MMMDCCCLXXXVIII)DCCCLXXXIX';
+        ctrl.translateToInteger();
+        expect(ctrl.integer).toBe('Please enter a valid roman numeral');
+  });
 
 });

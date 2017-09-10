@@ -46,6 +46,14 @@ describe('Roman Numeral Translator App', function() {
 
     });
 
+     it('should display proper error message if a user types value greater than 3888888 into the text box ', function() {
+
+      var query = element(by.model('rc.integer'));
+      query.sendKeys('3888889');
+      expect(element(by.binding('rc.romanNumeral')).getText()).toMatch(/Please enter a number between/);
+
+    });
+
   });
 
 
@@ -89,6 +97,14 @@ describe('Roman Numeral Translator App', function() {
 
       var query = element(by.model('ic.romanNumeral'));
       query.sendKeys('XXXX');
+      expect(element(by.binding('ic.integer')).getText()).toMatch(/Please enter a valid roman numeral/);
+
+    });
+
+    it('should display proper error message if a user types roman string which represents a value greater than 3888888 ', function() {
+
+      var query = element(by.model('ic.romanNumeral'));
+      query.sendKeys('(MMMDCCCLXXXVIII)DCCCLXXXIX');
       expect(element(by.binding('ic.integer')).getText()).toMatch(/Please enter a valid roman numeral/);
 
     });

@@ -51,6 +51,7 @@
         console.log(e);
         throw new Error('invalid value');
       }
+      if(result > 3888888) throw new Error('invalid value');
       return result;
     }
 
