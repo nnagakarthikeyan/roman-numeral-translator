@@ -1,8 +1,12 @@
-
+<form name = "myForm">
 <div class = "converter">
 <p class = "label">Enter a Integer value</p>
-<input type="text" style ="width:250px" ng-model="rc.integer" ng-change="rc.translateToRoman()"/><br/>
+<input type="number" min="1" max="3888888" style ="width:250px" ng-model="rc.integer" ng-change="rc.translateToRoman()"/><br/>
+<p class = "label">Roman numeral</p> 
+<div id = "conversiondiv" class = "converter-results" ng-show="myForm.$valid">{{rc.romanNumeral}}</div>
+<div id = "errordiv" class = "converter-results" ng-hide="myForm.$valid">Please enter a number between 1 and 3,888,888</div>
+<br/>
+</div>
+</form>
 
-<p class = "label">Roman numeral</p> <div class = "converter-results">{{rc.romanNumeral}}</div><br/>
-<div>
 

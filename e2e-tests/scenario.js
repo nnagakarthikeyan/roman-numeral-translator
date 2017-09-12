@@ -25,32 +25,26 @@ describe('Roman Numeral Translator App', function() {
     it('should display the Roman numeral value as a user types valid value into the text box ', function() {
 
       var query = element(by.model('rc.integer'));
+      var romanNumeralElement = element(by.binding('rc.romanNumeral'));
       query.sendKeys(100);
-      expect(element(by.binding('rc.romanNumeral')).getText()).toBe('C');
+      expect(romanNumeralElement.getText()).toBe('C');
 
       query.clear();
       query.sendKeys(3000);
-      expect(element(by.binding('rc.romanNumeral')).getText()).toBe('MMM');
+      expect(romanNumeralElement.getText()).toBe('MMM');
 
       query.clear();
       query.sendKeys(4010);
-      expect(element(by.binding('rc.romanNumeral')).getText()).toBe('(IV)X');
+      expect(romanNumeralElement.getText()).toBe('(IV)X');
 
     });
 
-    it('should display proper error message if a user types invalid value into the text box ', function() {
+      it('should display proper error message if a user types value greater than 3888888 into the text box ', function() {
 
       var query = element(by.model('rc.integer'));
-      query.sendKeys('abcd');
-      expect(element(by.binding('rc.romanNumeral')).getText()).toMatch(/Please enter a number between/);
-
-    });
-
-     it('should display proper error message if a user types value greater than 3888888 into the text box ', function() {
-
-      var query = element(by.model('rc.integer'));
+      var divElement = element(by.id('errordiv'));
       query.sendKeys('3888889');
-      expect(element(by.binding('rc.romanNumeral')).getText()).toMatch(/Please enter a number between/);
+      expect(divElement.getText()).toMatch(/Please enter a number between/);
 
     });
 
@@ -72,40 +66,44 @@ describe('Roman Numeral Translator App', function() {
     it('should display the Integer value as a user types roman numeral into the text box ', function() {
 
       var query = element(by.model('ic.romanNumeral'));
+      var numElement = element(by.binding('ic.integer'));
       query.sendKeys('MM');
-      expect(element(by.binding('ic.integer')).getText()).toBe('2000');
+      expect(numElement.getText()).toBe('2000');
 
       query.clear();
       query.sendKeys('XVI');
-      expect(element(by.binding('ic.integer')).getText()).toBe('16');
+      expect(numElement.getText()).toBe('16');
 
       query.clear();
       query.sendKeys('(XVI)');
-      expect(element(by.binding('ic.integer')).getText()).toBe('16000');
+      expect(numElement.getText()).toBe('16000');
 
     });
 
     it('should display proper error message if a user types invalid value into the text box ', function() {
 
       var query = element(by.model('ic.romanNumeral'));
+      var numElement = element(by.binding('ic.integer'));
       query.sendKeys('abcd');
-      expect(element(by.binding('ic.integer')).getText()).toMatch(/Please enter a valid roman numeral/);
+      expect(numElement.getText()).toMatch(/Please enter a valid roman numeral/);
 
     });
 
     it('should display proper error message if a user types invalid roman numeral into the text box ', function() {
 
       var query = element(by.model('ic.romanNumeral'));
+      var numElement = element(by.binding('ic.integer'));
       query.sendKeys('XXXX');
-      expect(element(by.binding('ic.integer')).getText()).toMatch(/Please enter a valid roman numeral/);
+      expect(numElement.getText()).toMatch(/Please enter a valid roman numeral/);
 
     });
 
     it('should display proper error message if a user types roman string which represents a value greater than 3888888 ', function() {
 
       var query = element(by.model('ic.romanNumeral'));
+      var numElement = element(by.binding('ic.integer'));
       query.sendKeys('(MMMDCCCLXXXVIII)DCCCLXXXIX');
-      expect(element(by.binding('ic.integer')).getText()).toMatch(/Please enter a valid roman numeral/);
+      expect(numElement.getText()).toMatch(/Please enter a valid roman numeral/);
 
     });
 

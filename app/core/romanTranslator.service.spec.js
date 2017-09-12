@@ -15,49 +15,100 @@ describe('RomanTranslatorService', function() {
   });
 
   it('should translate a given integer to roman numeral', function() {
-    expect(translatorService.translateToRoman(1)).toBe('I');
+    //Arrange
+    var romanString = 'I';
+    var returnedValue;
+    var num = 1;
+
+    //Act
+    returnedValue = translatorService.translateToRoman(num);
+
+    //Assert
+    expect(returnedValue).toBe(romanString);
   });
 
   it('should translate value greater than 3999', function() {
-    expect(translatorService.translateToRoman(4000)).toBe('(IV)');
+    //Arrange
+    var romanString = '(IV)';
+    var returnedValue;
+    var num = 4000;
+
+    //Act
+    returnedValue = translatorService.translateToRoman(4000);
+
+    //Assert
+    expect(returnedValue).toBe(romanString);
   });
 
-  it('should throw error if the given value is not a number when translating to roman numeral', function() {
-    expect(function() {
-      translatorService.translateToRoman('abcd')
-    }).toThrowError('invalid value');
+  it('should translate a given roman string to integer', function() {
+    //Arrange
+    var num = 100;
+    var returnedValue;
+    var romanString = 'C';
+    
+    //Act
+    returnedValue = translatorService.translateToInteger(romanString);
+
+    //Assert
+    expect(returnedValue).toBe(num);
   });
 
-  it('should throw error if the given value is greater than 3888888 when translating to roman numeral', function() {
-    expect(function() {
-      translatorService.translateToRoman(4000000)
-    }).toThrowError('invalid value');
+  it('should translate a given roman string included in round brackets for value greater than 3999', function() {
+    //Arrange
+    var num = 10000;
+    var returnedValue;
+    var romanString = '(X)';
+
+    //Act
+    returnedValue = translatorService.translateToInteger(romanString);
+
+    //Assert
+    expect(returnedValue).toBe(num);
   });
 
-   it('should translate a given roman string to integer', function() {
-    expect(translatorService.translateToInteger('C')).toBe(100);
+  it('should throw error if the given value is not a roman numeral when translating to integer', function() {
+    //Arrange
+    var romanString = 'abcd';
+    var errorMessage = 'invalid value';
+    var check;
+
+    //Act
+    check = function() {
+      translatorService.translateToInteger(romanString)
+    }
+
+    //Assert
+    expect(check).toThrowError(errorMessage);
   });
 
-   it('should translate a given roman string included in round brackets for value greater than 3999', function() {
-    expect(translatorService.translateToInteger('(X)')).toBe(10000);
+  it('should throw error if the given value is a invalid roman numeral when translating to integer', function() {
+    //Arrange
+    var romanString = 'XXXX';
+    var errorMessage = 'invalid value';
+    var check;
+
+    //Act
+    check = function() {
+      translatorService.translateToInteger(romanString)
+    }
+
+    //Assert
+    expect(check).toThrowError(errorMessage);
   });
 
-   it('should throw error if the given value is not a roman numeral when translating to integer', function() {
-    expect(function() {
-      translatorService.translateToInteger('abcd')
-    }).toThrowError('invalid value');
-  });
+  it('should throw error if the given roman string represents a value greater than 3888888', function() {
+    //Arrange
+    var romanString = '(MMMDCCCLXXXVIII)DCCCLXXXIX';
+    var errorMessage = 'invalid value';
+    var check;
+    
+    //Act
+    check = function() {
+      translatorService.translateToInteger(romanString)
+    }
 
-    it('should throw error if the given value is a invalid roman numeral when translating to integer', function() {
-    expect(function() {
-      translatorService.translateToInteger('XXXX')
-    }).toThrowError('invalid value');
-  });
-
-    it('should throw error if the given roman string represents a value greater than 3888888', function() {
-    expect(function() {
-      translatorService.translateToInteger('(MMMDCCCLXXXVIII)DCCCLXXXIX')
-    }).toThrowError('invalid value');
+    //Assert
+    expect(check).toThrowError(errorMessage);
   });
 
 

@@ -19,48 +19,65 @@ describe('RomantoIntegerController', function() {
   });
 
   it('tracks that the service was called', function() {
+     //Arrange
      spyOn(translatorService,'translateToInteger');
      ctrl.romanNumeral = 'CM';
+
+     //Act
      ctrl.translateToInteger();
+
+     //Assert
      expect(translatorService.translateToInteger).toHaveBeenCalled();
   });
 
   it('tracks that the service was called x times', function() {
+     //Arrange
      spyOn(translatorService,'translateToInteger');
      ctrl.romanNumeral = 'CM';
+
+     //Act
      ctrl.translateToInteger();
+
+     //Assert
      expect(translatorService.translateToInteger).toHaveBeenCalledTimes(1);
   });
 
    it('tracks that the service was called with argument', function() {
+     //Arrange
      spyOn(translatorService,'translateToInteger');
-     ctrl.romanNumeral = 'CM';
+     var romanString = 'CM';
+     ctrl.romanNumeral = romanString;
+
+     //Act
      ctrl.translateToInteger();
-     expect(translatorService.translateToInteger).toHaveBeenCalledWith('CM');
+
+     //Assert
+     expect(translatorService.translateToInteger).toHaveBeenCalledWith(romanString);
   });
 
-  it('should perform the integer translation by calling the service', function() {
-      ctrl.romanNumeral = 'CM';
+  it('should modify the model value based on the service response', function() {
+      //Arrange
+      var num = 900;
+      spyOn(translatorService,'translateToInteger').and.returnValue(num);
+
+      //Act
       ctrl.translateToInteger();
-      expect(ctrl.integer).toBe(900);
+
+      //Assert
+      expect(ctrl.integer).toBe(num);
   });
 
-  it('should return error message if the given value is not a Roman numeral', function() {
-        ctrl.romanNumeral = 'abcd';
-        ctrl.translateToInteger();
-        expect(ctrl.integer).toBe('Please enter a valid roman numeral');
+  it('should set the model value with custom error message if an error is thrown from service call', function() {
+      //Arrange
+      var errorMessage = 'invalid value';
+      spyOn(translatorService,'translateToInteger').and.throwError(errorMessage);
+      var customErrorMessage = 'Please enter a valid roman numeral';
+
+      //Act
+      ctrl.translateToInteger();
+
+      //Assert
+      expect(ctrl.integer).toBe(customErrorMessage);
   });
 
-  it('should return error message if the given value is a invalid Roman numeral', function() {
-        ctrl.romanNumeral = 'XXXX';
-        ctrl.translateToInteger();
-        expect(ctrl.integer).toBe('Please enter a valid roman numeral');
-  });
-
-  it('should return error message if the given roman string represents a value greater than 3888888 ', function() {
-        ctrl.romanNumeral = '(MMMDCCCLXXXVIII)DCCCLXXXIX';
-        ctrl.translateToInteger();
-        expect(ctrl.integer).toBe('Please enter a valid roman numeral');
-  });
-
-});
+ });

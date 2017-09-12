@@ -21,42 +21,52 @@ describe('IntegertoRomanController', function() {
 
 
   it('tracks that the service was called', function() {
+     //Arrange
      spyOn(translatorService,'translateToRoman');
      ctrl.integer = 100;
+
+     //Act
      ctrl.translateToRoman();
+
+     //Assert
      expect(translatorService.translateToRoman).toHaveBeenCalled();
   });
 
   it('tracks that the service was called x times', function() {
+     //Arrange
      spyOn(translatorService,'translateToRoman');
      ctrl.integer = 100;
+
+     //Act
      ctrl.translateToRoman();
+
+     //Assert
      expect(translatorService.translateToRoman).toHaveBeenCalledTimes(1);
   });
 
   it('tracks that the service was called with argument', function() {
+     //Arrange
      spyOn(translatorService,'translateToRoman');
-     ctrl.integer = 100;
+     var num = 100;
+     ctrl.integer = num;
+
+     //Act
      ctrl.translateToRoman();
-     expect(translatorService.translateToRoman).toHaveBeenCalledWith(100);
+
+     //Assert
+     expect(translatorService.translateToRoman).toHaveBeenCalledWith(num);
   });
 
-  it('should perform the roman numeral translation by calling the service', function() {
-        ctrl.integer = 3;
-        ctrl.translateToRoman();
-        expect(ctrl.romanNumeral).toBe('III');
-  });
+  it('should modify the model value based on the service response', function() {
+      //Arrange
+      var romanString = 'III';
+      spyOn(translatorService,'translateToRoman').and.returnValue(romanString);
 
-  it('should return error message if the given value is not a number', function() {
-        ctrl.integer = 'abcd';
-        ctrl.translateToRoman();
-        expect(ctrl.romanNumeral).toBe('Please enter a number between 1 and 3,888,888');
-  });
+      //Act
+      ctrl.translateToRoman();
 
-   it('should return error message if the given value is greater than 3888888', function() {
-        ctrl.integer = 4000000;
-        ctrl.translateToRoman();
-        expect(ctrl.romanNumeral).toBe('Please enter a number between 1 and 3,888,888');
+      //Assert
+      expect(ctrl.romanNumeral).toBe(romanString);
   });
 
 

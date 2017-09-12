@@ -4,13 +4,8 @@
   function romanNumeralTranslator() {
 
     function translateToRoman(value) {
-  
-       // 3,888,888 is the longest number represented by Roman numerals
-       if (isNaN(value) || value <= 0 || value > 3888888 ) {
-         throw new Error('invalid value');
-      }
        var romanNumeral = "";
-       var romanZero = this.getRoman(value);
+       var romanZero = getRoman(value);
        // If the number is 4000 or greater
        if (romanZero.numThousands > 3) {
          var thousandString = "";
@@ -33,18 +28,18 @@
          cloneStr = str.substr(1);
          splitStr = cloneStr.split(")");
            if(splitStr.length === 2) {
-              resFirstPart = this.getInteger(splitStr[0]);
+              resFirstPart = getInteger(splitStr[0]);
               result = (resFirstPart * 1000);
               if(!(splitStr[1] === "")) {
-              resSecondPart = this.getInteger(splitStr[1]);
+              resSecondPart = getInteger(splitStr[1]);
               result = (resFirstPart * 1000) + resSecondPart;
             }
            }
            else if(splitStr.length > 2)
             throw new Error('invalid value');
         }
-        else {
-           result = this.getInteger(str);
+        else if(str){
+           result = getInteger(str);
         }
         
       } catch (e) {
@@ -96,8 +91,6 @@
      
     this.translateToRoman = translateToRoman;
     this.translateToInteger = translateToInteger;
-    this.getRoman = getRoman;
-    this.getInteger = getInteger;
   }
 
   angular.module('romanTranslatorApp')
